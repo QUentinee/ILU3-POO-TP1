@@ -1,19 +1,13 @@
 package cartes;
 
-public class Probleme extends Carte {
-	private Type type;
+public abstract class Probleme extends Carte {
+	Type type;
 
-	public Probleme(Type type) {
-		super();
-		this.setType(type);
+	protected Probleme(Type type) {
+		this.type = type;
 	}
 
 	public Type getType() {
 		return type;
 	}
-
-	public void setType(Type type) {
-		this.type = type;
-	}
-
 }
