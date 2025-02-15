@@ -10,7 +10,11 @@ import cartes.Carte;
 
 public class Sabot implements Iterable<Carte>{
 	private Carte[] cartes;
-	private int nbCartes = 52;
+	private int nbCartes = 0;
+	
+	public Sabot(Carte[] cartes) {
+		this.cartes = cartes;
+	}
 	
 	public boolean estVide() {
 		return nbCartes == 0;
@@ -30,9 +34,16 @@ public class Sabot implements Iterable<Carte>{
         }
 	}
 	
+	public Carte piocher() {
+		Iterator<Carte> it = iterator();
+		Carte piochee = it.next();
+		it.remove();
+		return piochee;
+	}
+	
 	@Override
 	 public Iterator<Carte> iterator() {
-	 return new Iterateur();
+		return new Iterateur();
 	 }
 	
 	 private class Iterateur implements Iterator<Carte> {
