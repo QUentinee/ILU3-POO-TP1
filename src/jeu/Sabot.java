@@ -14,6 +14,7 @@ public class Sabot implements Iterable<Carte>{
 	
 	public Sabot(Carte[] cartes) {
 		this.cartes = cartes;
+		nbCartes = cartes.length;
 	}
 	
 	public boolean estVide() {
@@ -75,7 +76,7 @@ public class Sabot implements Iterable<Carte>{
 			 if(nbCartes < 1 || !nextEffectue) {
 				 throw new IllegalStateException();
 			 }
-			 for(int i = indiceIterateur -1; i < nbCartes; i++) {
+			 for(int i = indiceIterateur -1; i < nbCartes - 1; i++) {
 				 cartes[i] = cartes[i+1];
 			 }
 			 nextEffectue = false;

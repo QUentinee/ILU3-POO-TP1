@@ -36,7 +36,7 @@ public class JeuDeCartes {
 	public Carte[] donnerCartes() {
 		int nbCartes = 0;
 		for(int i = 0; i < typesDeCartes.length; i++) {
-			nbCartes = typesDeCartes[i].getNbExemplaires();
+			nbCartes += typesDeCartes[i].getNbExemplaires();
 		}
 		
 		Carte[] cartes = new Carte[nbCartes];
