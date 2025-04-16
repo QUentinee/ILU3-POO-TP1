@@ -63,7 +63,7 @@ public class GestionCartes {
 		return listeRassemble;
 	}
 
-	private static<T> boolean TrouverFinDeListe(List<T> liste, T elt, int i) {
+	private static<T> boolean trouverFinDeListe(List<T> liste, T elt, int i) {
 		boolean fin = false;
 		for (ListIterator<T> it = liste.listIterator(i); it.hasNext();) {
 			T elt2 = it.next();
@@ -79,7 +79,7 @@ public class GestionCartes {
 		for (ListIterator<T> it = liste.listIterator(); it.hasNext();) {
 			T elemSuivant = it.next();
 			if (elemPrecedant != null && !elemPrecedant.equals(elemSuivant)) {
-				if (TrouverFinDeListe(liste, elemSuivant, it.nextIndex())) {
+				if (trouverFinDeListe(liste, elemSuivant, it.nextIndex())) {
 					return false;
 				}
 			}
