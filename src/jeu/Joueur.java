@@ -1,5 +1,6 @@
 package jeu;
 
+import cartes.Borne;
 import cartes.Carte;
 
 public class Joueur {
@@ -24,4 +25,12 @@ public class Joueur {
 	public Carte prendreCarte(Sabot sabot) {
 		return sabot.piocher();
 	}
+	
+	public int donnerKmParcourus() {
+    	int somme = 0;
+    	for(Borne borne : zone.getBornes()) {
+    		somme += borne.getkm();
+    	}
+    	return somme;
+    }
 }

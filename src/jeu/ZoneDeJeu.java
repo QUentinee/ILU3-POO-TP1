@@ -21,5 +21,20 @@ public class ZoneDeJeu {
     	return 200;
     }
     
-        
+    public int donnerKmParcourus() {
+    	int somme = 0;
+    	for(Borne borne : getBornes()) {
+    		somme += borne.getkm();
+    	}
+    	return somme;
+    }
+
+	public List<Borne> getBornes() {
+		return bornes;
+	}
+    
+	public void deposer(Carte c) {
+		
+	}
+    
 }

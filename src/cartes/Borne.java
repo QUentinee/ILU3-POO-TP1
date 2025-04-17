@@ -11,6 +11,10 @@ public class Borne extends Carte {
 		return this.km + "KM";
 	}
 	
+	public int getkm() {
+		return km;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {		
 		return super.equals(obj) && toString().equalsIgnoreCase(((Borne)obj).toString());
