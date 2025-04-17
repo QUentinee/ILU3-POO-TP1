@@ -7,29 +7,30 @@ import java.util.ListIterator;
 import java.util.Random;
 
 public class GestionCartes {
+	private static Random random = new Random();
+	
+	private GestionCartes() {
+	    throw new IllegalStateException("Utility class");
+	  }
+	
 	public static <T> T extraire(List<T> liste) {
-		Random rand = new Random();
-		int i = rand.nextInt(liste.size());
+		int i = random.nextInt(liste.size());
 		T elt = liste.get(i);
 		liste.remove(elt);
 		return elt;
 	}
 
 	public static <T> T extraireIt(List<T> liste) {
-		Random rand = new Random();
-		int indice = rand.nextInt(liste.size());
-		ListIterator<T> it = liste.listIterator();
-		T elt2 = liste.get(0);
-		for (int i = 0; i < indice; i++) {
-			elt2 = it.next();
-		}
+		int indice = random.nextInt(liste.size());
+		ListIterator<T> it = liste.listIterator(indice);
+		T elt2 = it.next();
 		it.remove();
 		return elt2;
 	}
 
 	public static <T> List<T> melanger(List<T> liste) {
 		int taille = liste.size();
-		List<T> liste2 = new ArrayList<T>();
+		List<T> liste2 = new ArrayList<>();
 		for (int i = 0; i < taille; i++) {
 			liste2.add(extraire(liste));
 		}
@@ -51,7 +52,7 @@ public class GestionCartes {
 	}
 
 	public static <T> List<T> rassembler(List<T> liste) {
-		List<T> listeRassemble = new ArrayList<T>();
+		List<T> listeRassemble = new ArrayList<>();
 		for (T elt : liste) {
 			int nbExemplaire = Collections.frequency(liste, elt);
 			if (!listeRassemble.contains(elt)) {
@@ -63,30 +64,32 @@ public class GestionCartes {
 		return listeRassemble;
 	}
 
-	private static<T> boolean trouverFinDeListe(List<T> liste, T elt, int i) {
-		boolean fin = false;
-		for (ListIterator<T> it = liste.listIterator(i); it.hasNext();) {
-			T elt2 = it.next();
-			if (elt.equals(elt2)) {
-				fin = true;
-			}
-		}
-		return fin;
-	}
+	private static <T> boolean elementReapparaitApresIndice(List<T> liste, T element, int indiceDepart) {
+		for(ListIterator<T> it = liste.listIterator(indiceDepart); it.hasNext();)
+			if (it.next().equals(element)) {
+              return true; 
+          }
+        return false;
+    }
 
-	public static <T> boolean verifierRassemblement(List<T> liste) {
-		T elemPrecedant = null;
-		for (ListIterator<T> it = liste.listIterator(); it.hasNext();) {
-			T elemSuivant = it.next();
-			if (elemPrecedant != null && !elemPrecedant.equals(elemSuivant)) {
-				if (trouverFinDeListe(liste, elemSuivant, it.nextIndex())) {
-					return false;
-				}
-			}
-			elemPrecedant = elemSuivant;
 
-		}
-		return true;
-	}
+    public static <T> boolean verifierRassemblement(List<T> liste) {
+        if (liste.isEmpty()) return true;
+        ListIterator<T> it = liste.listIterator();
+        T precedent = it.next();
+        while (it.hasNext()) {
+            T courant = it.next();
+            if (!courant.equals(precedent)) {
+                int indexSuivant = it.nextIndex(); 
+                if (elementReapparaitApresIndice(liste, precedent, indexSuivant)) {
+                    return false;
+                }
+            }
+
+            precedent = courant;
+        }
+
+        return true;
+    }
 
 }

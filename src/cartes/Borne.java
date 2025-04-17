@@ -12,11 +12,7 @@ public class Borne extends Carte {
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof Borne) {
-			Borne carte = (Borne) obj;
-			return toString().equalsIgnoreCase(carte.toString());
-		}
-		return false;
+	public boolean equals(Object obj) {		
+		return super.equals(obj) && toString().equalsIgnoreCase(((Borne)obj).toString());
 	}
 }
