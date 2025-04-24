@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import cartes.Bataille;
 import cartes.Carte;
 import cartes.JeuDeCartes;
+import cartes.Parade;
 import utils.GestionCartes;
 
 public class TestGestionCartes {
@@ -25,6 +27,6 @@ public class TestGestionCartes {
 		listeCartes = GestionCartes.rassembler(listeCartes);
 		System.out.println(listeCartes);
 		System.out.println("liste rassembl�e sans erreur ? " + GestionCartes.verifierRassemblement(listeCartes));
-
+		
 	}
 }

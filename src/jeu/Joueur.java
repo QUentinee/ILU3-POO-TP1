@@ -1,7 +1,9 @@
 package jeu;
 
+import cartes.Bataille;
 import cartes.Borne;
 import cartes.Carte;
+import cartes.Limite;
 
 public class Joueur {
 	private String nom;
@@ -33,4 +35,16 @@ public class Joueur {
     	}
     	return somme;
     }
+	
+	public void deposer(Carte c) {
+		if(c instanceof Borne b) {
+			zone.getBornes().add(0, b);
+		}
+		else if(c instanceof Limite l) {
+			zone.getPileLimites().add(0, l);
+		}
+		else if(c instanceof Bataille bat) {
+			zone.getPileBataille().add(0, bat);
+		}
+	}
 }
